@@ -29,21 +29,4 @@ public class Triangle extends Figure {
         return roundOut(CalcPerimeter() / 2, 3);
     }
 
-    public String typeTriangle() {
-
-        if (sideA == sideB && sideB == sideC && sideA == sideC) {
-            return "Equilatero";
-        }
-
-        if (sideA != sideB && sideB != sideC && sideA != sideC) {
-            return "Escaleno";
-        }
-
-        if (sideA == sideB && sideB != sideC && sideA != sideC) {
-            return "Isosceles";
-        }
-
-        return null;
-    }
-
 }

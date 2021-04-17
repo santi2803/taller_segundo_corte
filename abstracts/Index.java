@@ -10,10 +10,10 @@ import figures.*;
 public class Index extends JFrame implements ActionListener {
 
     private JLabel areaLabel, perimeterLabel, diameterLabel, semiperimeterLabel, resArea, resPerimeter, resDiameter, resSemiperimeter, figureLabel;
-    private JPanel panel;
     private JButton squareBtn, triangleBtn, circleBtn, drawBtn, areaBtn, perimeterBtn, diameterBtn, semiperimeterBtn;
     private double radio, side, sideA, sideB, sideC;
     private String area, perimeter, diameter, figure, semiperimeter;
+    boolean flag = false;
 
     public Index() {
         setLayout(null);
@@ -85,13 +85,33 @@ public class Index extends JFrame implements ActionListener {
         figureLabel = new JLabel("");
         figureLabel.setBounds(500, 100, 250, 20);
         add(figureLabel);
-
-        /* Draw */
-        panel = new JPanel();
-        panel.setBounds(450, 130, 350, 350);
-        panel.setBackground(Color.blue);
-        add(panel);
         
+    }
+
+    public void paint(Graphics g) {
+        super.paint(g);
+        if (flag) {
+            switch (figure) {
+                case "Circle":
+                    g.setColor(Color.BLACK);
+                    g.fillOval(500, 170, (int) radio*2, (int) radio*2);
+                    break;
+                case "Square":
+                    g.setColor(Color.RED);
+                    g.fillRect(500, 170, (int) side, (int) side);
+                    break;
+
+                case "Triangle":
+                    g.setColor(Color.BLUE);
+                    int vX [] = {500, 500+(int) sideA, 500-(int) sideB};
+                    int vY [] = {170, 170+(int) sideB, 170+(int) sideC};
+                    g.fillPolygon(vX, vY, 3);
+                    break;
+            
+                default:
+                    break;
+            }
+        }
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -126,9 +146,8 @@ public class Index extends JFrame implements ActionListener {
             perimeter = ToString(objTriangle.CalcPerimeter());
             semiperimeter = ToString(objTriangle.CalcSemiPerimeter());
             diameter = "El triangulo no tiene diametro";
-            String type = objTriangle.typeTriangle();
             figure = "Triangle";
-            figureLabel.setText(figure+ " " + type);
+            figureLabel.setText(figure);
         }
 
         if (e.getSource() == areaBtn) {
@@ -164,8 +183,10 @@ public class Index extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == drawBtn) {
-            Draw draw = new Draw(figure, 10, 10, (int) radio, (int) side,(int) sideA, (int) sideB, (int) sideC);
-            panel.add(draw);
+            /* Draw draw = new Draw(figure, 10, 10, (int) radio, (int) side,(int) sideA, (int) sideB, (int) sideC);
+            panel.add(draw); */
+            flag = true;
+            repaint();
         }
     }
 
