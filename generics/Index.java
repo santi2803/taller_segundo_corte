@@ -54,7 +54,7 @@ public class Index extends JFrame implements ActionListener{
         btn5 = new JButton("Sumar String");
         btn5.setBounds(10, 220, 200, 30);
         add(btn5);
-        btn6 = new JButton("Comparar int");
+        btn6 = new JButton("Restar int");
         btn6.setBounds(220, 220, 200, 30);
         add(btn6);
 
@@ -78,6 +78,22 @@ public class Index extends JFrame implements ActionListener{
             JOptionPane.showMessageDialog(null, "Esta cadena " + comp.compS(txt1.getText(), txt2.getText()) +" es mas grande");
         }
 
+        if (e.getSource() == btn3) {
+            Lista<Integer> x = new Lista<Integer>();
+            for (int i = 0; i < 5; i++) {
+                x.add(i+50);
+            }
+
+            Lista<Persona> list = new Lista<Persona>();
+            Persona persona = new Persona(txt1.getText(), txt2.getText());
+            Persona persona2 = new Persona(txt3.getText(), txt4.getText());
+            list.add(persona);
+            list.add(persona2);
+            for (Persona p : list) {
+                JOptionPane.showMessageDialog(null, "Persona en lista " + p.getNombre() + " " + p.getApellido());
+            }
+        }
+
         if (e.getSource() == btn4) {
             Validations<Integer> suma = new Validations<Integer>();
             JOptionPane.showMessageDialog(null, "La suma es: "+ suma.sumarN(Integer.parseInt(txt1.getText()), Integer.parseInt(txt2.getText())));
@@ -86,6 +102,11 @@ public class Index extends JFrame implements ActionListener{
         if (e.getSource() == btn5) {
             Validations<String> suma = new Validations<String>();
             JOptionPane.showMessageDialog(null, "El suma es: " + suma.sumS(txt1.getText(), txt2.getText()));
+        }
+
+        if (e.getSource() == btn6) {
+            Validations<Integer> x = new Validations<Integer>();
+            JOptionPane.showMessageDialog(null, "La resta es: " + x.restaN(Integer.parseInt(txt1.getText()), Integer.parseInt(txt2.getText())));
         }
     }
     public static void main(String[] args) {

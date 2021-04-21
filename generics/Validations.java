@@ -1,6 +1,12 @@
-import java.util.Map;
-
 public class Validations<T> {
+
+    /* public T suma(T a, T b) {
+        T suma;
+        if (a instanceof Number && b instanceof Number) {
+            suma = (Integer.parseInt(a.toString()) + Integer.parseInt(b.toString()));
+        }
+        return suma;
+    } */
     
     public <T extends Number> Integer sumarN(T pVr1, T pVr2) {
         int sum = 0;
@@ -10,6 +16,16 @@ public class Validations<T> {
         }
 
         return sum;
+    }
+
+    public <T extends Number> Integer restaN(T a, T b) {
+        int rest = 0;
+
+        if (a instanceof Number && b instanceof Number) {
+            rest = a.intValue() - b.intValue();
+        }
+
+        return rest;
     }
 
     public <T extends Number> Integer compN(T pVr1, T pVr2) {
